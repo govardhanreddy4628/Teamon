@@ -7,6 +7,8 @@ import { inngest, functions } from "./inngest/index.js";
 import workspaceRouter from "./routes/workspaceRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
 import commentRouter from "./routes/commentRoutes.js";
+import { protect } from "./middlewares/authMiddleware.js";
+import taskRouter from "./routes/taskRoutes.js";
 
 const app = express();
 
