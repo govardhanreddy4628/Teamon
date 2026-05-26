@@ -1,4 +1,5 @@
 import { equal } from "assert";
+import { inngest } from "../inngest/index.js";
 
 
 //Create task
@@ -28,13 +29,14 @@ export const createTask = async ( req, res) => {
                 title,
                 description,
                 status,
+                type,
                 priority,
                 assigneeId,          
-                due_date: newDate(end_date)
+                due_date: due_date ? new Date(due_date) : null
             }
         })
 
-        const taskWithAsignee = await prisma.task.findUnique({
+        const taskWithAssignee  = await prisma.task.findUnique({
             where: {id: task.id},
             include: {assignee: true}
         })
@@ -97,7 +99,12 @@ export const updateTask = async ( req, res) => {
 export const deleteTask = async ( req, res) => {
     try {
         const {userId} = await req.auth();
-        const {tasksIds} = equal.body
+        const {tasksIds} = req.body
+
+        if (!tasksIds || !Array.isArray(tasksIds) || tasksIds.length === 0) {
+            return res.status(400).json({ message: "tasksIds must be a non-empty array" });
+        }
+        
         const tasks = await prisma.task.findMany({
             where: {id: {in: tasksIds}}
         })

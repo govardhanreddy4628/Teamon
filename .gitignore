@@ -1,4 +1,4 @@
-# Logs
+# 🔥 Logs
 logs
 *.log
 npm-debug.log*
@@ -7,19 +7,41 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# 📦 Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# 🔐 Environment variables
 .env
-dist
+.env.*
+client/.env
+server/.env
+
+# 🏗 Build folders
+dist/
+build/
+client/dist/
+server/dist/
+
+# ⚡ Vite specific
 dist-ssr
 *.local
 
-# Editor directories and files
+# 🧠 OS & Editor files
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
+
+# 🧾 Misc
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# 🗄 Prisma (optional but recommended)
+prisma/dev.db
+prisma/dev.db-journal
