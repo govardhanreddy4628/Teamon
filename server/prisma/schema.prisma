@@ -1,10 +1,9 @@
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["driverAdapters"]
 }
-
 datasource db {
-    provider  = "postgresql"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum WorkspaceRole {
@@ -142,3 +141,8 @@ model Comment {
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
     task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
 }
+
+
+
+
+
